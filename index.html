@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ha">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Koyon HTTP Server - Karatun Farko</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Barka Da Zuwa Ga Koyon HTTP Server</h1>
+      <p>Yadda ake samar da HTTP server mai sauƙi</p>
+    </header>
+
+    <div class="container">
+      <section class="intro">
+        <h2>Menene HTTP Server?</h2>
+        <p>
+          HTTP server shine wani tsari na musamman da ke bada damar musayar
+          bayanai tsakanin mai amfani da server. Yakan yi aiki ne ta hanyar:
+        </p>
+        <ul>
+          <li>Karɓar buƙatun HTTP daga mai amfani</li>
+          <li>Aiwatar da buƙatun</li>
+          <li>Mayar da amsa zuwa ga mai amfani</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Misalin Code Na Farko</h2>
+        <div class="code-block">
+          <pre>
+            <code>
+              const http =require('node:http');
+
+              const server = http.createServer();
+              const PORT = 8000;
+
+              server.on('request', (request, response) => {
+                res.writeHead(200, {'Content-Type': 'text/plain'});
+                res.end('Barka da zuwa server dina!');
+              });
+
+              server.listen(PORT, () => {
+                console.log(`Server is running on port: ${PORT}`)
+              });
+            </code>
+          </pre>
+        </div>
+      </section>
+
+      <section class="feature-list">
+        <div class="feature-item">
+          <h3>Samar da Server</h3>
+          <p>
+            Koyi yadda ake samar da server mai sauƙi da zai iya karɓar buƙatu
+            daga mai amfani.
+          </p>
+        </div>
+        <div class="feature-item">
+          <h3>Aiwatar da Buƙatu</h3>
+          <p>Fahimci yadda ake aiwatar da buƙatun HTTP daban-daban.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Mayar da Amsa</h3>
+          <p>Koyi yadda ake mayar da amsoshi daban-daban zuwa ga mai amfani.</p>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="container footer-content">
+        <p class="creator-info">
+          &copy; 2024
+          <a
+            href="https://www.youtube.com/@dankore1"
+            target="_blank"
+            rel="noopener"
+            >Adamu M. Dankore YouTube Channel</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
