@@ -5,48 +5,42 @@ const path = require('node:path');
 const server = http.createServer();
 const PORT = 8000;
 
+function serveFile(filePath, contentType, response) {
+  fs.readFile(filePath, (error, content) => {
+    if (error) {
+      response.writeHead(500, { 'Content-Type': 'text/plain' });
+      response.end('Server da samu error');
+      return;
+    }
+
+    response.writeHead(200, { 'Content-Type': contentType });
+    response.end(content);
+  });
+}
+
 server.on('request', (request, response) => {
+  let filePath = '';
+  let contentType = '';
+
   switch (request.url) {
     case '/': {
-      fs.readFile(path.join(__dirname, 'index.html'), (error, content) => {
-        if (error) {
-          response.writeHead(500, { 'Content-Type': 'text/plain' });
-          response.end('Server da samu error');
-          return;
-        }
-
-        response.writeHead(200, { 'Content-Type': 'text/html' });
-        response.end(content);
-      });
-
+      filePath = path.join(__dirname, 'index.html');
+      contentType = 'text/html';
       break;
     }
     case '/styles.css': {
-      fs.readFile(path.join(__dirname, 'styles.css'), (error, content) => {
-        if (error) {
-          response.writeHead(500, { 'Content-Type': 'text/plain' });
-          response.end('Server da samu error');
-          return;
-        }
-
-        response.writeHead(200, { 'Content-Type': 'text/css' });
-        response.end(content);
-      });
-
+      filePath = path.join(__dirname, 'styles.css');
+      contentType = 'text/css';
       break;
     }
     case '/script.js': {
-      fs.readFile(path.join(__dirname, 'script.js'), (error, content) => {
-        if (error) {
-          response.writeHead(500, { 'Content-Type': 'text/plain' });
-          response.end('Server da samu error');
-          return;
-        }
-
-        response.writeHead(200, { 'Content-Type': 'text/javascript' });
-        response.end(content);
-      });
-
+      filePath = path.join(__dirname, 'script.js');
+      contentType = 'text/javascript';
+      break;
+    }
+    case '/image.jpg': {
+      filePath = path.join(__dirname, 'image.jpg');
+      contentType = 'image/jpeg';
       break;
     }
     default: {
@@ -54,6 +48,8 @@ server.on('request', (request, response) => {
       response.end('Not found');
     }
   }
+
+  serveFile(filePath, contentType, response);
 });
 
 server.listen(PORT, () => {
@@ -61,3 +57,7 @@ server.listen(PORT, () => {
 });
 
 // DRY principle: DON'T REPEAT YOURSELF
+// .png, .webp
+// Refactoring
+
+// ExpressJS
