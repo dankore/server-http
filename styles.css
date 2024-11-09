@@ -210,3 +210,31 @@ li::before {
     gap: 1.5rem;
   }
 }
+
+section[aria-labelledby="image-heading"] {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+section[aria-labelledby="image-heading"] h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+figure {
+  margin: 1.5rem 0;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+figcaption {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
